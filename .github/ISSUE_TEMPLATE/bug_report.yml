@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a problem with a Tuxcrate project.
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the problem.
+    validations:
+      required: true
+  - type: input
+    id: image-tag
+    attributes:
+      label: Image tag
+      description: For container-related issues, include the full image tag with its -rX revision suffix. Leave blank for other issues.
+      placeholder: ghcr.io/tuxcrate/example:1.2.3-r1
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include your operating system, architecture, and relevant runtime or tool versions.
+      placeholder: "OS: Debian 13\nArchitecture: amd64\nRuntime: Docker or Podman (include version)"
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: List the steps needed to reproduce the problem. Include relevant configuration with secrets removed.
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant logs or error messages. Remove passwords, tokens, and other sensitive information.
+      render: text

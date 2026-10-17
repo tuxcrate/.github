@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest an improvement to a Tuxcrate project.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe your use case and what is currently missing or difficult.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature or change you would like.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any alternatives or workarounds you have considered.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any relevant examples, links, or screenshots.
