@@ -13,6 +13,11 @@ locals {
       homepage_url    = "https://tuxcrate.com/maintainers/container-releases/"
       required_checks = toset(["test"])
     }
+    "renovate-config" = {
+      description     = "Shared Renovate configuration for Tuxcrate repositories"
+      homepage_url    = "https://tuxcrate.com/maintainers/dependency-updates/"
+      required_checks = toset(["validate"])
+    }
   }
   container_repos = toset([
     "gallery-dl",
@@ -21,10 +26,6 @@ locals {
     "sonarr",
     "zrepl",
   ])
-  container_release_metadata = {
-    for repo in local.container_repos :
-    repo => yamldecode(file("${path.module}/../../${repo}/meta.yaml"))
-  }
   container_metadata = {
     for repo in local.container_repos :
     repo => yamldecode(regex(
@@ -38,11 +39,9 @@ locals {
       homepage_url = "https://tuxcrate.com/containers/${repo}/"
       description  = local.container_metadata[repo].description
       topics       = concat(local.container_metadata[repo].topics, ["tuxcrate"])
-      # Match the shared workflow's check names for every declared track.
-      required_checks = setunion(toset(["container / plan"]), toset([
-        for track in local.container_release_metadata[repo].tracks :
-        "container / pull-request (${track.name})"
-      ]))
+      # The aggregate requires planning and every active track build to succeed.
+      # Dormant prerelease tracks do not create matrix checks.
+      required_checks = toset(["container / pull-request-check"])
     }
   })
 }
