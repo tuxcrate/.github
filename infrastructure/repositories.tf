@@ -21,11 +21,11 @@ locals {
   }
   container_repos = toset([
     "gallery-dl",
+    "lidarr",
     "prowlarr",
     "radarr",
     "sonarr",
     "zrepl",
-    "lidarr"
   ])
   container_metadata = {
     for repo in local.container_repos :
