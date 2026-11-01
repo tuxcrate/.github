@@ -21,6 +21,7 @@ locals {
   }
   container_repos = toset([
     "gallery-dl",
+    "lidarr",
     "prowlarr",
     "radarr",
     "sonarr",
