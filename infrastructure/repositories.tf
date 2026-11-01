@@ -25,6 +25,7 @@ locals {
     "radarr",
     "sonarr",
     "zrepl",
+    "lidarr"
   ])
   container_metadata = {
     for repo in local.container_repos :
